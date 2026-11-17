@@ -2,7 +2,8 @@
 from groq import Groq
 import os           
 from dotenv import load_dotenv
-import backend.prepare as prepare
+from backend.ingestion.vector_store import get_vectorstore
+vectorstore = get_vectorstore()
 load_dotenv()
 client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
@@ -20,7 +21,7 @@ messages = []
 def get_answer(query:str):
     
     global memory
-    vectorstore = prepare.vectorstore
+    vectorstore = ingest.vectorstore
     results = vectorstore.similarity_search(query, k=2)
     context ="\n\n".join([doc.page_content for doc in results])
     # print("\nRetrieved Context:")
