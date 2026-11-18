@@ -1,4 +1,4 @@
-import backend.rag as rag
+import  rag
 from fastapi import FastAPI, HTTPException, Header
 from pydantic import BaseModel
 from fastapi.middleware.cors import  CORSMiddleware
@@ -17,7 +17,7 @@ class ChatRequest(BaseModel):
     message : str
  
 @app.post("/chat")
-async def chat(request: ChatRequest):
+async def chat(request: ChatRequest)-> dict:
   
     if not request.message.strip():
         raise HTTPException(
