@@ -3,7 +3,7 @@ from functools import lru_cache
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
-from backend.ingestion.ingest import BASE_DIR, load_and_chunk
+from .ingest import BASE_DIR, load_and_chunk
 
 CHROMA_DIR = str(BASE_DIR / "chroma_db")
 COLLECTION_NAME = "whats_in_it_for_me"

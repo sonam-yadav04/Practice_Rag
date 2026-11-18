@@ -2,7 +2,8 @@
 from groq import Groq
 import os           
 from dotenv import load_dotenv
-from backend.ingestion.vector_store import get_vectorstore
+from ingestion import ingest
+from ingestion.vector_store import get_vectorstore
 vectorstore = get_vectorstore()
 load_dotenv()
 client = Groq(
@@ -18,8 +19,7 @@ client = Groq(
 # )
 memory =[]
 messages = []
-def get_answer(query:str):
-    
+def get_answer(query:str): 
     global memory
     vectorstore = ingest.vectorstore
     results = vectorstore.similarity_search(query, k=2)
